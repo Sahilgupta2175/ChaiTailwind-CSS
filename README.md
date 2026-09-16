@@ -158,15 +158,7 @@ ChaiTailwind reads your HTML, pulls out every unique utility class, resolves eac
 ```
 
 ### Pipeline Flowchart
-flowchart TD
-    A[input.html - HTML file with class attributes] --> B[extractClassesFromHTML - src/extractor.js]
-    B -->|returns unique class names| C[compile - src/compiler.js]
-    C --> D[generateCSS - src/generator.js]
-    D --> E[parseClass - src/parser.js]
-    E --> F[getUtilityInfo - src/utilities.js]
-    F --> G[valueResolvers - src/values.js]
-    G --> H[CSS output string]
-    H --> I[style.css - written by cli.js]
+![ChaiTailwind pipeline flowchart](./assets/pipeline-flowchart.png)
 
 ### Module Responsibilities
 
