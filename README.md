@@ -196,10 +196,4 @@ ChaiTailwind reads your HTML, pulls out every unique utility class, resolves eac
 - [ ] Support for responsive prefixes (`sm:`, `md:`, `lg:`)
 - [ ] Config file for custom color/spacing scales
 - [ ] Watch mode for live rebuilding on file changes
-- [ ] npm publish so `chai-tailwind` can be installed globally via `npm i -g chaitailwind`
-
----
-
-## 📄 License
-
-ISC
+- [ ] For Future goal, npm publish so `chai-tailwind` can be installed globally via `npm i -g chaitailwind`
