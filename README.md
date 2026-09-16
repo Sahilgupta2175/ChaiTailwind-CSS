@@ -1,6 +1,6 @@
 # ChaiTailwind CSS
 
-A lightweight, Tailwind-inspired **utility-first CSS compiler** built in plain Node.js. It scans an HTML file for utility class names (like `bg-blue`, `p-8`, `flex`), resolves each one against a set of utility/value mappings, and generates a ready-to-use CSS stylesheet — no build tooling, no config, no external dependencies.
+A lightweight, Tailwind-inspired **utility-first CSS compiler** built in plain Node.js. It scans an HTML file for utility class names (like `bg-blue`, `p-8`, `flex`), resolves each one against a set of utility/value mappings, and generates a ready-to-use CSS stylesheet - no build tooling, no config, no external dependencies.
 
 ---
 
@@ -8,9 +8,9 @@ A lightweight, Tailwind-inspired **utility-first CSS compiler** built in plain N
 
 - 🔍 Extracts utility classes directly from your HTML `class="..."` attributes
 - 🧩 Maps utility prefixes (`bg`, `p`, `flex`, `items`, `justify`, `border`, etc.) to real CSS properties
-- 🎨 Resolves values via lookup tables — colors, spacing, radius, font weight, alignment, and more
+- 🎨 Resolves values via lookup tables - colors, spacing, radius, font weight, alignment, and more
 - ⚙️ Simple CLI: point it at an HTML file, get back a CSS file
-- 🪶 Zero dependencies — pure Node.js
+- 🪶 Zero dependencies - pure Node.js
 
 ---
 
@@ -47,7 +47,7 @@ cd ChaiTailwind-CSS
 
 If the project doesn't already have a `package.json`, generate one and configure it for this CLI tool.
 
-**Option A — generate interactively:**
+**Option A - generate interactively:**
 
 ```bash
 npm init
@@ -55,7 +55,7 @@ npm init
 
 Answer the prompts (or press Enter to accept defaults), then edit the resulting file to match the configuration below.
 
-**Option B — generate instantly with defaults:**
+**Option B - generate instantly with defaults:**
 
 ```bash
 npm init -y
@@ -88,7 +88,7 @@ This creates a basic `package.json`. Next, open it and replace its contents with
 | Field | Purpose |
 |---|---|
 | `main` | Sets `src/compiler.js` as the package's main module (what other code imports when it requires `chaitailwind`) |
-| `bin` | Registers `chai-tailwind` as a global command that runs `cli.js` — enables usage like `npx chai-tailwind` once linked/published |
+| `bin` | Registers `chai-tailwind` as a global command that runs `cli.js` - enables usage like `npx chai-tailwind` once linked/published |
 | `scripts.compile` | Shortcut: `npm run compile` → runs `cli.js` against `input.html`, writing `style.css` |
 | `scripts.test` | Currently aliased to the same compile command (placeholder until real tests are added) |
 | `type: "module"` | Tells Node to treat `.js` files as ES Modules, so `import`/`export` syntax works throughout `src/` |
@@ -127,7 +127,7 @@ node cli.js input.html style.css
 |---|---|---|
 | input file | `input.html` | HTML file to scan for utility classes |
 | output file | `style.css` | Where the generated CSS is written |
-| `--help` | — | Prints usage information |
+| `--help` | - | Prints usage information |
 
 ---
 
@@ -158,18 +158,15 @@ ChaiTailwind reads your HTML, pulls out every unique utility class, resolves eac
 ```
 
 ### Pipeline Flowchart
-
-```mermaid
 flowchart TD
-    A["input.html<br/>(HTML with class attributes)"] --> B["extractClassesFromHTML()<br/>src/extractor.js<br/>- finds class=&quot;...&quot;<br/>- splits classes by space<br/>- removes duplicates"]
-    B -->|returns unique class names| C["compile()<br/>src/compiler.js<br/>- receives HTML string<br/>- loops through classes<br/>- calls generateCSS()"]
-    C --> D["generateCSS()<br/>src/generator.js<br/>- parses class name<br/>- finds utility metadata<br/>- resolves value<br/>- builds CSS rule"]
-    D --> E["parseClass()<br/>src/parser.js<br/>- bg-blue → bg + blue<br/>- p-8 → p + 8"]
-    E --> F["getUtilityInfo()<br/>src/utilities.js<br/>- maps utility prefix<br/>to CSS property/type"]
-    F --> G["valueResolvers[type]<br/>src/values.js<br/>- converts token to real CSS value<br/>- e.g. 8 → 2rem<br/>- e.g. blue → blue"]
-    G --> H["CSS output string<br/>.bg-white { ... }<br/>.p-8 { ... }<br/>.flex { ... }"]
-    H --> I["style.css<br/>written by cli.js"]
-```
+    A[input.html - HTML file with class attributes] --> B[extractClassesFromHTML - src/extractor.js]
+    B -->|returns unique class names| C[compile - src/compiler.js]
+    C --> D[generateCSS - src/generator.js]
+    D --> E[parseClass - src/parser.js]
+    E --> F[getUtilityInfo - src/utilities.js]
+    F --> G[valueResolvers - src/values.js]
+    G --> H[CSS output string]
+    H --> I[style.css - written by cli.js]
 
 ### Module Responsibilities
 
@@ -181,8 +178,8 @@ flowchart TD
 | `values.js` | Lookup tables/resolvers for colors, spacing, radius, font weight, display, alignment, justify-content, border widths |
 | `generator.js` | Combines the parsed class + utility metadata + resolved value into a finished CSS rule |
 | `compiler.js` | Top-level pipeline: extract → generate → join into a full CSS string. Exports `compile` and `generateCSSFromHTML` |
-| `index.js` | Browser/demo entry point — reads the live DOM and logs generated CSS to the console |
-| `cli.js` | Node CLI wrapper — reads the input file, runs `compile()`, writes the output file |
+| `index.js` | Browser/demo entry point - reads the live DOM and logs generated CSS to the console |
+| `cli.js` | Node CLI wrapper - reads the input file, runs `compile()`, writes the output file |
 
 ---
 
