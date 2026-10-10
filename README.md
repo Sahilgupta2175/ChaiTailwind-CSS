@@ -169,7 +169,7 @@ ChaiTailwind reads your HTML, pulls out every unique utility class, resolves eac
 | `utilities.js` | Maps a utility prefix (`bg`, `p`, `flex`, `items`, `justify`, `border`, ...) to its CSS property and value type |
 | `values.js` | Lookup tables/resolvers for colors, spacing, radius, font weight, display, alignment, justify-content, border widths |
 | `generator.js` | Combines the parsed class + utility metadata + resolved value into a finished CSS rule |
-| `compiler.js` | Top-level pipeline: extract → generate → join into a full CSS string. Exports `compile` and `generateCSSFromHTML` |
+| `compiler.js` | Top-level pipeline: extract → generate → join into a full CSS string. Exports `compile` |
 | `index.js` | Browser/demo entry point - reads the live DOM and logs generated CSS to the console |
 | `cli.js` | Node CLI wrapper - reads the input file, runs `compile()`, writes the output file |
 
@@ -197,3 +197,17 @@ ChaiTailwind reads your HTML, pulls out every unique utility class, resolves eac
 - [ ] Config file for custom color/spacing scales
 - [ ] Watch mode for live rebuilding on file changes
 - [ ] For Future goal, npm publish so `chai-tailwind` can be installed globally via `npm i -g chaitailwind`
+
+---
+
+## 🌐 Browser Mode (`chai-*` inline styles)
+
+Add the script and prefix classes with `chai-`. On load, the engine converts each `chai-*` class into an inline style and removes the class.
+
+```html
+<script type="module" src="src/index.js"></script>
+<div class="chai-p-8 chai-bg-red chai-text-center">Hi</div>
+<!-- becomes: <div style="padding: 8px; background-color: red; text-align: center;">Hi</div> -->
+```
+
+Open `demo.html` through a local server (ES modules do not load from `file://`), e.g. `python -m http.server`. It also deploys as-is to GitHub Pages. Spacing values are plain pixels (`p-2` = `2px`); text supports color, size (`text-sm`, `text-3xl`) and alignment (`text-center`). Run `npm test` for unit checks.

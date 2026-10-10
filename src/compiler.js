@@ -13,6 +13,4 @@ function compile(html) {
     .join("\n");
 }
 
-const generateCSSFromHTML = compile;
-
-export { compile, generateCSSFromHTML };
+export { compile };

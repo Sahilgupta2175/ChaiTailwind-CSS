@@ -5,22 +5,20 @@ const colors = {
   white: "white",
   black: "black",
   yellow: "yellow",
-};
-
-const spacings = {
-  1: "0.25rem",
-  2: "0.5rem",
-  3: "0.75rem",
-  4: "1rem",
-  5: "1.25rem",
-  6: "1.5rem",
-  8: "2rem",
+  gray: "gray",
+  orange: "orange",
+  purple: "purple",
+  pink: "pink",
+  teal: "teal",
+  indigo: "indigo",
+  transparent: "transparent",
 };
 
 const radii = {
-  sm: "0.125rem",
-  md: "0.375rem",
-  lg: "0.5rem",
+  none: "0px",
+  sm: "2px",
+  md: "6px",
+  lg: "8px",
   full: "9999px",
 };
 
@@ -30,11 +28,35 @@ const fontWeights = {
   bold: "700",
 };
 
+const fontSizes = {
+  xs: "12px",
+  sm: "14px",
+  base: "16px",
+  lg: "18px",
+  xl: "20px",
+  "2xl": "24px",
+  "3xl": "30px",
+  "4xl": "36px",
+};
+
+const textAligns = {
+  left: "left",
+  center: "center",
+  right: "right",
+  justify: "justify",
+};
+
 const displays = {
   flex: "flex",
   grid: "grid",
   block: "block",
+  inline: "inline",
   hidden: "none",
+};
+
+const flexDirections = {
+  row: "row",
+  col: "column",
 };
 
 const alignments = {
@@ -54,6 +76,7 @@ const justifies = {
 };
 
 const borderWidths = {
+  border: "1px",
   0: "0px",
   1: "1px",
   2: "2px",
@@ -61,68 +84,24 @@ const borderWidths = {
   8: "8px",
 };
 
-function getColorValue(color) {
-  if (Object.hasOwn(colors, color)) {
-    return colors[color];
-  } else {
-    return null;
-  }
+function lookup(table) {
+  return (value) => (Object.hasOwn(table, value) ? table[value] : null);
 }
 
+const getColorValue = lookup(colors);
+const getRadiusValue = lookup(radii);
+const getFontWeightValue = lookup(fontWeights);
+const getFontSizeValue = lookup(fontSizes);
+const getTextAlignValue = lookup(textAligns);
+const getDisplayValue = lookup(displays);
+const getFlexDirectionValue = lookup(flexDirections);
+const getAlignValue = lookup(alignments);
+const getJustifyValue = lookup(justifies);
+const getBorderWidthValue = lookup(borderWidths);
+
+// Any whole number is pixels: p-2 -> 2px
 function getSpacingValue(value) {
-  if (Object.hasOwn(spacings, value)) {
-    return spacings[value];
-  } else {
-    return null;
-  }
-}
-
-function getRadiusValue(value) {
-  if (Object.hasOwn(radii, value)) {
-    return radii[value];
-  } else {
-    return null;
-  }
-}
-
-function getFontWeightValue(value) {
-  if (Object.hasOwn(fontWeights, value)) {
-    return fontWeights[value];
-  } else {
-    return null;
-  }
-}
-
-function getDisplayValue(value) {
-  if (Object.hasOwn(displays, value)) {
-    return displays[value];
-  } else {
-    return null;
-  }
-}
-
-function getAlignValue(value) {
-  if (Object.hasOwn(alignments, value)) {
-    return alignments[value];
-  } else {
-    return null;
-  }
-}
-
-function getJustifyValue(value) {
-  if (Object.hasOwn(justifies, value)) {
-    return justifies[value];
-  } else {
-    return null;
-  }
-}
-
-function getBorderWidthValue(value) {
-  if (Object.hasOwn(borderWidths, value)) {
-    return borderWidths[value];
-  } else {
-    return null;
-  }
+  return /^\d+$/.test(value) ? `${value}px` : null;
 }
 
 const valueResolvers = {
@@ -130,20 +109,13 @@ const valueResolvers = {
   spacing: getSpacingValue,
   radius: getRadiusValue,
   fontWeight: getFontWeightValue,
+  fontSize: getFontSizeValue,
+  textAlign: getTextAlignValue,
   display: getDisplayValue,
+  flexDirection: getFlexDirectionValue,
   align: getAlignValue,
   justify: getJustifyValue,
   borderWidth: getBorderWidthValue,
 };
 
-export {
-  getColorValue,
-  getSpacingValue,
-  getRadiusValue,
-  getFontWeightValue,
-  getDisplayValue,
-  getAlignValue,
-  getJustifyValue,
-  getBorderWidthValue,
-  valueResolvers,
-};
+export { valueResolvers };

@@ -4,40 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChaiTailwind Test Page</title>
-    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="src/index.js"></script>
   </head>
 
-  <body class="bg-white">
-    <div class="p-8">
-      <header class="flex items-center justify-between p-4">
-        <h1 class="text-blue font-bold">ChaiTailwind</h1>
-        <span class="bg-green text-white p-2 rounded-md"> Ready </span>
+  <body class="chai-bg-white">
+    <div class="chai-p-32">
+      <header class="chai-flex chai-items-center chai-justify-between chai-p-16">
+        <h1 class="chai-text-blue chai-text-3xl chai-font-bold">ChaiTailwind</h1>
+        <span class="chai-bg-green chai-text-white chai-p-8 chai-rounded-md">
+          Ready
+        </span>
       </header>
 
-      <main class="bg-blue text-white p-8 rounded-lg">
-        <h2 class="font-bold">Utility Class Test</h2>
-        <p class="p-2">
+      <main
+        class="chai-bg-blue chai-text-white chai-text-center chai-p-32 chai-rounded-lg"
+      >
+        <h2 class="chai-font-bold chai-text-xl">Utility Class Test</h2>
+        <p class="chai-p-8 chai-text-sm">
           This page tests colors, spacing, flexbox, alignment, borders, radius,
           and font utilities.
         </p>
       </main>
 
-      <section class="p-4">
-        <h2 class="text-blue font-bold">Login Form</h2>
+      <section class="chai-p-16">
+        <h2 class="chai-text-blue chai-font-bold">Login Form</h2>
 
-        <form class="p-4">
+        <form class="chai-flex chai-gap-8 chai-p-16">
           <input
-            class="w-8 p-2 border-2 rounded-md"
+            class="chai-p-8 chai-border-2 chai-border-gray chai-rounded-md"
             type="text"
             placeholder="Enter username"
           />
           <input
-            class="w-8 p-2 border-2 rounded-md"
+            class="chai-p-8 chai-border-2 chai-border-gray chai-rounded-md"
             type="password"
             placeholder="Enter password"
           />
           <button
-            class="bg-red text-white p-4 rounded-lg font-bold"
+            class="chai-bg-red chai-text-white chai-p-8 chai-rounded-lg chai-font-bold"
             type="submit"
           >
             Login

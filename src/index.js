@@ -1,5 +1,7 @@
-import generateCSSFromHTML from "./compiler.js";
+import { applyChai } from "./engine.js";
 
-const htmlInput = document.querySelector('html').outerHTML;
-
-console.log(generateCSSFromHTML(htmlInput));
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => applyChai());
+} else {
+  applyChai();
+}

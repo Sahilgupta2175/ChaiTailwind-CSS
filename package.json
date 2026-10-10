@@ -1,0 +1,15 @@
+{
+  "name": "chaitailwind",
+  "version": "1.0.0",
+  "description": "Lightweight utility-first CSS engine (chai-* classes)",
+  "main": "src/compiler.js",
+  "bin": {
+    "chai-tailwind": "./cli.js"
+  },
+  "scripts": {
+    "compile": "node cli.js input.html style.css",
+    "test": "node test.js"
+  },
+  "type": "module",
+  "license": "ISC"
+}
